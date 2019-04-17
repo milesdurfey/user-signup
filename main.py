@@ -54,6 +54,7 @@ def index():
                     password1_error = 'Password must be between 3 and 20 characters'
                     password1 = ''        
             if password2 != password1:
+                password1_error = 'Passwords do not match. Re-enter password and confirmation.'
                 password2_error = 'Passwords do not match. Re-enter password and confirmation.'
                 password1 = ''
                 password2 = ''
@@ -69,6 +70,11 @@ def index():
             if counta != 1 or countdot !=1:
                 email_error = 'email format issue: must have one "@" and one "."'
                 email = ''
+            else:
+                if len(email) < 3 or len(email) > 20:
+                    email_error = 'Email must be between 3 and 20 characters'
+                    email = ''
+
      
         if (not username_error) and (not password1_error) and (not password2_error) and (not email_error):
             return redirect('/feedback?username={0}'.format(username))
